@@ -2,7 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import pino from 'pino-http';
 import dotenv from 'dotenv';
-import { getAllContacts, getContactById } from './controllers/contactsController.js';
+import contacts from "./routers/contacts.js"
+import { errorHandler } from './middlewares/errorHandler.js';
+import { notFoundHandler } from './middlewares/notFoundHandler.js';
 
 dotenv.config();
 
@@ -15,9 +17,9 @@ export function setupServer() {
     res.json({ message: 'Server is working!' });
   });
 
-  app.get('/contacts', getAllContacts);
-
-  app.get('/contacts/:contactId', getContactById);
+  app.use('/contacts', contacts);
+  app.use(notFoundHandler);
+  app.use(errorHandler);
 
   app.use((req, res) => {
     res.status(404).json({ message: 'Not found' });
