@@ -1,15 +1,31 @@
-import { getContacts } from '../services/contacts.js';
 import * as contactsService from '../services/contacts.js';
 import createError from 'http-errors';
 
-export const getAllContacts = async (req, res) => {
-    const contacts = await getContacts();
+export const getAllContacts = async (req, res, next) => {
+  try {
+    const { page, perPage, sortBy, sortOrder } = req.query;
+
+    const result = await contactsService.getContacts({
+      page: Number(page),
+  perPage: Number(perPage),
+      sortBy,
+      sortOrder,
+    });
+
+    const { data, ...meta } = result;
+
     res.status(200).json({
       status: 200,
       message: 'Successfully found contacts!',
-      data: contacts,
+      data,
+      ...meta,
+      
     });
+  } catch (error) {
+    next(error);
+  }
 };
+
 
 export async function getContactById(req, res) {
       const { contactId } = req.params;
