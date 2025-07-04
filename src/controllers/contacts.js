@@ -4,8 +4,10 @@ import createError from 'http-errors';
 export const getAllContacts = async (req, res, next) => {
   try {
     const { page, perPage, sortBy, sortOrder } = req.query;
+    const userId = req.user._id;
 
     const result = await contactsService.getContacts({
+      userId,
       page: Number(page),
   perPage: Number(perPage),
       sortBy,
@@ -26,10 +28,11 @@ export const getAllContacts = async (req, res, next) => {
   }
 };
 
-
 export async function getContactById(req, res) {
-      const { contactId } = req.params;
-      const contact = await contactsService.getContactById(contactId);
+  const { contactId } = req.params;
+  const userId = req.user._id;
+  const contact = await contactsService.getContactById(userId, contactId);
+  
   
       if (!contact) {
         throw createError(404, 'Contact not found');
@@ -44,6 +47,7 @@ export async function getContactById(req, res) {
 
   export const createContact = async (req, res) => {
     const { name, phoneNumber, email, isFavourite = false, contactType } = req.body;
+    const userId = req.user._id;
   
     if (!name || !phoneNumber || !contactType) {
       throw createError(400, 'Missing required fields: name, phoneNumber, or contactType');
@@ -55,6 +59,7 @@ export async function getContactById(req, res) {
       email,
       isFavourite,
       contactType,
+      userId,
     });
   
     res.status(201).json({
@@ -67,12 +72,13 @@ export async function getContactById(req, res) {
 export const updateContactById = async (req, res) => {
   const { contactId } = req.params;
   const updateData = req.body;
+  const userId = req.user._id;
 
   if (Object.keys(updateData).length === 0) {
     throw createError(400, 'Missing fields for update');
   }
 
-  const updatedContact = await contactsService.updateContactById(contactId, updateData);
+  const updatedContact = await contactsService.updateContactById(userId, contactId, updateData);
 
   if (!updatedContact) {
     throw createError(404, 'Contact not found');
@@ -87,8 +93,9 @@ export const updateContactById = async (req, res) => {
 
 export const deleteContactById = async (req, res) => {
   const { contactId } = req.params;
+  const userId = req.user._id;
 
-  const deletedContact = await contactsService.deleteContactById(contactId);
+  const deletedContact = await contactsService.deleteContactById(userId, contactId);
 
   if (!deletedContact) {
     throw createError(404, 'Contact not found');

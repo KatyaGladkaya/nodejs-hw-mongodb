@@ -8,4 +8,4 @@ async function bootstrap() {
     setupServer();
   }
   
-  bootstrap();
+bootstrap();
