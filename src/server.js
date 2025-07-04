@@ -1,14 +1,13 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import pino from 'pino-http';
-import dotenv from 'dotenv';
 import contacts from "./routers/contacts.js"
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import authRouter from './routers/auth.js';
 import cookieParser from 'cookie-parser';
-
-dotenv.config();
 
 export function setupServer() {
   const app = express();
