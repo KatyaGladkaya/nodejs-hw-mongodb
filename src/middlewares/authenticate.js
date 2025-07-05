@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import createHttpError from 'http-errors';
 import { User } from '../models/userModel.js';
+import { Session } from '../models/sessionModel.js';
 
 const ACCESS_SECRET = process.env.ACCESS_SECRET;
 
@@ -23,9 +24,13 @@ export const authenticate = async (req, res, next) => {
       }
       throw createHttpError(401, 'Invalid token');
     }
-
+    
+    const session = await Session.findOne({ accessToken: token });
+if (!session) {
+  throw createHttpError(401, 'Invalid token');
+    }
+    
     const user = await User.findById(payload.userId);
-
     if (!user) {
       throw createHttpError(401, 'User not found');
     }
