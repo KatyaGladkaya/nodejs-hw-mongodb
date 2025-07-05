@@ -49,7 +49,14 @@ export const refreshSession = async (req, res) => {
   
     const { accessToken } = await authService.refreshSession(refreshToken);
   
-    res.status(200).json({
+    res
+    .cookie('accessToken', accessToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'None',
+      maxAge: 15 * 60 * 1000,
+    })
+    .status(200).json({
       status: 200,
       message: 'Successfully refreshed a session!',
       data: { accessToken },
