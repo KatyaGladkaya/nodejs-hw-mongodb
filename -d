@@ -1,0 +1,1 @@
+{"status":500,"message":"Something went wrong","data":"Cannot destructure property 'email' of 'req.body' as it is undefined."}

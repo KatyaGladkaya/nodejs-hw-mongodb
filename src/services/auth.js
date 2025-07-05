@@ -78,8 +78,11 @@ export const refreshSession = async (oldRefreshToken) => {
   const accessTokenValidUntil = new Date(Date.now() + 15 * 60 * 1000);
   const refreshTokenValidUntil = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
 
-  const accessToken = jwt.sign(payload, ACCESS_SECRET, { expiresIn: '15m' });
-  const newRefreshToken = jwt.sign(payload, REFRESH_SECRET, { expiresIn: '30d' });
+  const newPayload = { userId: payload.userId };
+
+  const accessToken = jwt.sign(newPayload, ACCESS_SECRET, { expiresIn: '15m' });
+  const newRefreshToken = jwt.sign(newPayload, REFRESH_SECRET, { expiresIn: '30d' });
+  
 
   await Session.create({
     userId: user._id,
