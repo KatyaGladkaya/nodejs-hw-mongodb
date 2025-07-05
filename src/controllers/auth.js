@@ -19,10 +19,16 @@ export const registerUser = async (req, res) => {
 
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
-
   const { accessToken, refreshToken } = await authService.login({ email, password });
 
-  res.cookie('refreshToken', refreshToken, {
+  res
+  .cookie('accessToken', accessToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'None',
+    maxAge: 15 * 60 * 1000,
+  })
+    .cookie('refreshToken', refreshToken, {
     httpOnly: true,
     secure: true,
     sameSite: 'None',

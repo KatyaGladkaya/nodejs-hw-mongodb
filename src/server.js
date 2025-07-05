@@ -9,6 +9,10 @@ import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import authRouter from './routers/auth.js';
 import cookieParser from 'cookie-parser';
 
+console.log('ACCESS_SECRET:', process.env.ACCESS_SECRET);
+console.log('REFRESH_SECRET:', process.env.REFRESH_SECRET);
+
+
 export function setupServer() {
   const app = express();
   const PORT = process.env.PORT || 3000;
