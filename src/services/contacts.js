@@ -24,21 +24,26 @@ export const getContacts = async ({userId, page = 1, perPage = 10, sortBy = 'nam
   };
 };
 
-export async function getContactById(contactId) {
-  return await Contact.findById(contactId);
-}
+export const getContactById = async (contactId, userId) => {
+  return await Contact.findOne({ _id: contactId, userId });
+};
+
 
 export const createContact = async (contactData) => {
   return Contact.create(contactData);
 };
 
-export const updateContactById = async (contactId, updateData) => {
-  return Contact.findByIdAndUpdate(contactId, updateData, {
-    new: true,
-    runValidators: true,
-  });
+export const updateContactById = async (contactId, userId, updateData) => {
+  return Contact.findOneAndUpdate(
+    { _id: contactId, userId },
+    updateData,
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
 };
 
-export const deleteContactById = async (contactId) => {
-  return Contact.findByIdAndDelete(contactId);
+export const deleteContactById = async (contactId, userId) => {
+  return Contact.findOneAndDelete({ _id: contactId, userId });
 };
