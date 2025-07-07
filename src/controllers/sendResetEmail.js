@@ -11,7 +11,9 @@ export const sendResetEmailController = async (req, res, next) => {
     const { email } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user) throw createHttpError(404, 'User not found!');
+      if (!user) throw createHttpError(404, 'User not found!');
+      
+      console.log('JWT_SECRET in sendResetEmailController:', JWT_SECRET);
 
     const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: '5m' });
 
