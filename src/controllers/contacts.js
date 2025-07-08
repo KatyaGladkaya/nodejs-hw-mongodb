@@ -57,6 +57,11 @@ export const createContact = async (req, res, next) => {
       throw createError(400, 'Missing required fields: name, phoneNumber, or contactType');
     }
 
+    let photoUrl = null;
+    if (req.file) {
+      photoUrl = req.file.path;
+    }
+
     const newContact = await contactsService.createContact({
       name,
       phoneNumber,
@@ -64,6 +69,7 @@ export const createContact = async (req, res, next) => {
       isFavourite,
       contactType,
       userId,
+      photo: photoUrl,
     });
 
     res.status(201).json({
@@ -84,6 +90,10 @@ export const updateContactById = async (req, res, next) => {
 
     if (Object.keys(updateData).length === 0) {
       throw createError(400, 'Missing fields for update');
+    }
+
+    if (req.file) {
+      updateData.photo = req.file.path;
     }
 
     const updatedContact = await contactsService.updateContactById(contactId, userId, updateData);

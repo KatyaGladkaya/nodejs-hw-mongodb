@@ -14,6 +14,7 @@ import {
   createContactSchema,
   updateContactSchema,
 } from '../schemas/contactSchemas.js';
+import { upload } from '../middlewares/upload.js';
 
 
 const router = express.Router();
@@ -23,12 +24,14 @@ router.get('/', ctrlWrapper(getAllContacts));
 router.get('/:contactId', isValidId, ctrlWrapper(getContactById));
 router.post(
   '/',
+  upload.single('photo'),
   validateBody(createContactSchema),
   ctrlWrapper(createContact)
 );
 router.patch(
   '/:contactId',
   isValidId,
+  upload.single('photo'),
   validateBody(updateContactSchema),
   ctrlWrapper(updateContactById)
 );
