@@ -11,6 +11,11 @@ import cookieParser from 'cookie-parser';
 
 console.log('ACCESS_SECRET:', process.env.ACCESS_SECRET);
 console.log('REFRESH_SECRET:', process.env.REFRESH_SECRET);
+console.log('ACCESS_SECRET:', process.env.ACCESS_SECRET);
+console.log('REFRESH_SECRET:', process.env.REFRESH_SECRET);
+console.log('SMTP_PASSWORD:', process.env.SMTP_PASSWORD ? '***' : 'undefined');
+console.log('JWT_SECRET:', process.env.JWT_SECRET);
+
 
 
 export function setupServer() {
