@@ -50,6 +50,7 @@ export const getContactById = async (req, res, next) => {
 
 export const createContact = async (req, res, next) => {
   try {
+    console.log('req.file:', req.file);
     const { name, phoneNumber, email, isFavourite = false, contactType } = req.body;
     const userId = req.user._id;
 
