@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import jwt from 'jsonwebtoken';
 import createHttpError from 'http-errors';
 import { User } from '../models/userModel.js';
@@ -14,6 +16,8 @@ export const authenticate = async (req, res, next) => {
     }
 
     const token = authHeader.split(' ')[1];
+
+    console.log('🔐 Incoming token:', token);
 
     let payload;
     try {

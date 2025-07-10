@@ -1,11 +1,13 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import createError from 'http-errors';
 import { User } from '../models/userModel.js';
 import { Session } from '../models/sessionModel.js';
 import createHttpError from 'http-errors';
-import dotenv from 'dotenv';
-dotenv.config();
+
 
 const ACCESS_SECRET = process.env.ACCESS_SECRET;
 const REFRESH_SECRET = process.env.REFRESH_SECRET;
