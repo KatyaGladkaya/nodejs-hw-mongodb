@@ -8,6 +8,12 @@ import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import authRouter from './routers/auth.js';
 import cookieParser from 'cookie-parser';
+import { readFileSync } from 'fs';
+import swaggerUi from 'swagger-ui-express';
+const swaggerDocument = JSON.parse(
+  readFileSync(new URL('../docs/swagger.json', import.meta.url))
+);
+
 console.log('JWT_SECRET:', process.env.JWT_SECRET);
 
 export function setupServer() {
@@ -25,12 +31,14 @@ export function setupServer() {
 
   app.use('/auth', authRouter);
   app.use('/contacts', contacts);
-
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   app.use(notFoundHandler);
   app.use(errorHandler);
+ 
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
+  
 }
 

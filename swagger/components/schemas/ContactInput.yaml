@@ -1,0 +1,24 @@
+type: object
+properties:
+  name:
+    type: string
+    example: 'Ivan Petrenko'
+  email:
+    type: string
+    example: 'ivan@example.com'
+  phone:
+    type: string
+    example: '+380931112233'
+  contactType:
+    type: string
+    example: 'business'
+  isFavourite:
+    type: boolean
+    example: false
+  photoURL:
+    type: string
+    example: 'https://example.com/photo.jpg'
+required:
+  - name
+  - email
+  - phone
