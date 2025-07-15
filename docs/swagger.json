@@ -26,7 +26,6 @@
   "paths": {
     "/contacts": {
       "get": {
-        "get": {
           "tags": [
             "Контакти"
           ],
@@ -71,10 +70,8 @@
               }
             }
           }
-        }
       },
       "post": {
-        "post": {
           "tags": [
             "Контакти"
           ],
@@ -112,11 +109,9 @@
             }
           }
         }
-      }
     },
     "/contacts/{contactId}": {
       "get": {
-        "get": {
           "tags": [
             "Контакти"
           ],
@@ -161,10 +156,8 @@
               }
             }
           }
-        }
       },
       "patch": {
-        "patch": {
           "tags": [
             "Контакти"
           ],
@@ -212,10 +205,8 @@
               "description": "Контакт не знайдено"
             }
           }
-        }
       },
       "delete": {
-        "delete": {
           "tags": [
             "Контакти"
           ],
@@ -248,8 +239,7 @@
           }
         }
       }
-    }
-  },
+    },
   "components": {
     "securitySchemes": {
       "bearerAuth": {
