@@ -3,7 +3,7 @@ get:
     - Контакти
   summary: Отримати контакт за ID
   operationId: getContactById
-  description: Повертає контакт із бази даних за унікальним ідентифікатором.
+  description: Повертає контакт за унікальним ідентифікатором.
   security:
     - bearerAuth: []
   parameters:

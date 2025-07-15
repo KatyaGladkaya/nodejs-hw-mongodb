@@ -1,6 +1,6 @@
 delete:
   tags:
-    - Contacts
+    - Контакти
   summary: Видалити контакт
   operationId: deleteContact
   description: Видаляє контакт із бази даних.

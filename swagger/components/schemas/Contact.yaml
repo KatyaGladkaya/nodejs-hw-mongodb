@@ -1,28 +1,29 @@
-type: object
-properties:
-  _id:
-    type: string
-    example: '60f6c2fd8c8b4e4b887c9a2d'
-  name:
-    type: string
-    example: 'Ivan Petrenko'
-  email:
-    type: string
-    example: 'ivan@example.com'
-  phone:
-    type: string
-    example: '+380931112233'
-  contactType:
-    type: string
-    example: 'business'
-  isFavourite:
-    type: boolean
-    example: true
-  photoURL:
-    type: string
-    example: 'https://example.com/image.jpg'
-required:
-  - _id
-  - name
-  - email
-  - phone
+Contact:
+  type: object
+  properties:
+    _id:
+      type: string
+      example: '60f6c2fd8c8b4e4b887c9a2d'
+    name:
+      type: string
+      example: 'Ivan Petrenko'
+    email:
+      type: string
+      example: 'ivan@example.com'
+    phone:
+      type: string
+      example: '+380931112233'
+    contactType:
+      type: string
+      example: 'business'
+    isFavourite:
+      type: boolean
+      example: true
+    photoURL:
+      type: string
+      example: 'https://example.com/image.jpg'
+  required:
+    - _id
+    - name
+    - email
+    - phone

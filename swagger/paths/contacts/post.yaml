@@ -1,6 +1,6 @@
 post:
   tags:
-    - Contacts
+    - Контакти
   summary: Створити новий контакт
   operationId: createContact
   description: Додає новий контакт до списку.

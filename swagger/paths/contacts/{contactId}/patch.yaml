@@ -1,6 +1,6 @@
 patch:
   tags:
-    - Contacts
+    - Контакти
   summary: Оновити контакт
   operationId: updateContact
   description: Оновлює дані існуючого контакту.

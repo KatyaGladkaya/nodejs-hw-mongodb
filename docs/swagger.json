@@ -2,28 +2,33 @@
   "openapi": "3.1.0",
   "info": {
     "version": "1.0.0",
-    "title": "<назва вашого додатку>",
+    "title": "<Контакти>",
     "license": {
       "name": "Apache 2.0",
       "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "description": "<опис вашого додатку>"
+    "description": "<Книга контактів>"
   },
   "servers": [
     {
       "url": "http://localhost:3000"
     },
     {
-      "url": null
+      "url": "https://nodejs-hw-mongodb-2-63e8.onrender.com"
     }
   ],
-  "tags": null,
+  "tags": [
+    {
+      "name": "Контакти",
+      "description": "Операції з контактами"
+    }
+  ],
   "paths": {
     "/contacts": {
       "get": {
         "get": {
           "tags": [
-            "Contacts"
+            "Контакти"
           ],
           "summary": "Отримати контакт за ID",
           "operationId": "getContactById",
@@ -71,7 +76,7 @@
       "post": {
         "post": {
           "tags": [
-            "Contacts"
+            "Контакти"
           ],
           "summary": "Створити новий контакт",
           "operationId": "createContact",
@@ -110,10 +115,58 @@
       }
     },
     "/contacts/{contactId}": {
+      "get": {
+        "get": {
+          "tags": [
+            "Контакти"
+          ],
+          "summary": "Отримати контакт за ID",
+          "operationId": "getContactById",
+          "description": "Повертає контакт за унікальним ідентифікатором.",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "contactId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              },
+              "description": "Унікальний ідентифікатор контакту"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Успішне отримання контакту",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "../../../components/schemas/Contact.yaml"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Контакт не знайдено",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "../../../components/responses/NotFound.yaml"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "patch": {
         "patch": {
           "tags": [
-            "Contacts"
+            "Контакти"
           ],
           "summary": "Оновити контакт",
           "operationId": "updateContact",
@@ -164,7 +217,7 @@
       "delete": {
         "delete": {
           "tags": [
-            "Contacts"
+            "Контакти"
           ],
           "summary": "Видалити контакт",
           "operationId": "deleteContact",
