@@ -1,20 +1,44 @@
-delete:
-  tags:
-    - Контакти
-  summary: Видалити контакт
-  operationId: deleteContact
-  description: Видаляє контакт із бази даних.
-  security:
-    - bearerAuth: []
-  parameters:
-    - name: contactId
-      in: path
-      required: true
-      schema:
-        type: string
-      description: Ідентифікатор контакту
-  responses:
-    '204':
-      description: Контакт успішно видалено
-    '404':
-      description: Контакт не знайдено
+tags:
+  - Контакти
+summary: Видалити контакт
+operationId: deleteContact
+description: Видаляє контакт із бази даних.
+security:
+  - bearerAuth: []
+parameters:
+  - name: contactId
+    in: path
+    required: true
+    schema:
+      type: string
+    description: Ідентифікатор контакту
+responses:
+  '200':
+    description: Контакт успішно видалено
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: success
+            message:
+              type: string
+              example: Контакт успішно видалено
+            data:
+              type: object
+              example: {}
+  '404':
+    description: Контакт не знайдено
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: error
+            message:
+              type: string
+              example: Контакт не знайдено
