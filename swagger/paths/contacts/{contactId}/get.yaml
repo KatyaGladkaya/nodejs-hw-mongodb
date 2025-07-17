@@ -22,18 +22,25 @@ responses:
           properties:
             status:
               type: integer
-              example: success
+              example: 200
             message:
               type: string
-              example: Контакт знайдено
+              example: Successfully found contact with id 68797448c9f85366e1df6187!
             data:
-              type: object
-              properties:
-                contact:
-                  $ref: '../../../components/schemas/ContactInput.yaml'
-  '404':
-  description: Контакт не знайдено
-  content:
-    application/json:
-      schema:
-        $ref: '../../../components/responses/NotFound.yaml'
+              $ref: '../../../components/schemas/ContactInput.yaml'
+  '400':
+    description: Невалідний ідентифікатор контакту
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: Something went wrong
+            data:
+              type: string
+              example: id is not a valid

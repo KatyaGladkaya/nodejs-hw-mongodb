@@ -45,18 +45,28 @@ responses:
           properties:
             status:
               type: integer
-              example: success
+              example: 200
             message:
               type: string
-              example: Контакт оновлено
+              example: Successfully patched a contact!
             data:
               type: object
               properties:
                 contact:
                   $ref: '../../../components/schemas/ContactInput.yaml'
-  '404':
-    description: Контакт не знайдено
+  '400':
+    description: Неправильний запит
     content:
       application/json:
         schema:
-          $ref: '../../../components/responses/NotFound.yaml'
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: Something went wrong
+            data:
+              type: string
+              example: id is not a valid

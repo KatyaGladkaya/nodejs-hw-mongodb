@@ -45,18 +45,22 @@ responses:
           properties:
             status:
               type: integer
-              example: success
+              example: 201
             message:
               type: string
-              example: Контакт успішно створено
+              example: Successfully created a contact!
             data:
-              type: object
-              properties:
-                contact:
-                  $ref: '../../components/schemas/ContactInput.yaml'
-  '404':
-    description: Контакт не знайдено
+              $ref: '../../components/schemas/ContactInput.yaml'
+  '400':
+    description: Контакт не додано
     content:
       application/json:
         schema:
-          $ref: '../../components/responses/NotFound.yaml'
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: Something went wrong

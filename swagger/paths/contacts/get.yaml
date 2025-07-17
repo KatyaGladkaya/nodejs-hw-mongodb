@@ -39,7 +39,6 @@ parameters:
       enum: [asc, desc]
 
 responses:
-  responses:
   '200':
     description: Список контактів
     content:
@@ -57,19 +56,38 @@ responses:
               type: array
               items:
                 $ref: '../../components/schemas/ContactInput.yaml'
-            total:
-              type: integer
-              example: 100
             page:
               type: integer
+              nullable: true
               example: 1
-            limit:
+            perPage:
               type: integer
+              nullable: true
               example: 10
+            totalItems:
+              type: integer
+              example: 25
+            totalPages:
+              type: integer
+              nullable: true
+              example: 3
+            hasPreviousPage:
+              type: boolean
+              example: false
+            hasNextPage:
+              type: boolean
+              example: false
 
-  '404':
-    description: Контакт не знайдено
+  '400':
+    description: Невалідний ідентифікатор контакту
     content:
       application/json:
         schema:
-          $ref: '../../components/responses/NotFound.yaml'
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: Something went wrong

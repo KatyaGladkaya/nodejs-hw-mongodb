@@ -1,5 +1,8 @@
 type: object
 properties:
+  _id:
+    type: string
+    example: '68795d3f254db0ee2b9ded32'
   name:
     type: string
     example: 'Ivan Petrenko'
@@ -15,9 +18,24 @@ properties:
   isFavourite:
     type: boolean
     example: false
-  photoURL:
+  photo:
     type: string
+    nullable: true
     example: 'https://example.com/photo.jpg'
+  userId:
+    type: string
+    example: '68795bb3254db0ee2b9ded17'
+  createdAt:
+    type: string
+    format: date-time
+    example: '2025-07-17T20:29:51.016Z'
+  updatedAt:
+    type: string
+    format: date-time
+    example: '2025-07-17T20:29:51.016Z'
+  __v:
+    type: integer
+    example: 0
 required:
   - name
   - email
