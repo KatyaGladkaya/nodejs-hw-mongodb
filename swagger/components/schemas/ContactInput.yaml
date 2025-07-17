@@ -6,7 +6,7 @@ properties:
   email:
     type: string
     example: 'ivan@example.com'
-  phone:
+  phoneNumber:
     type: string
     example: '+380931112233'
   contactType:
@@ -21,4 +21,4 @@ properties:
 required:
   - name
   - email
-  - phone
+  - phoneNumber
