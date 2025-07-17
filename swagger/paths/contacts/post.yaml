@@ -19,19 +19,22 @@ requestBody:
             type: string
             format: email
             example: ivan@example.com
-          phone:
+          phoneNumber:
             type: string
             example: +380931112233
           contactType:
             type: string
             example: business
+          isFavourite:
+            type: boolean
+            example: false
           photo:
             type: string
             format: binary
         required:
           - name
-          - email
-          - phone
+          - phoneNumber
+          - contactType
 responses:
   '201':
     description: Контакт успішно створено
