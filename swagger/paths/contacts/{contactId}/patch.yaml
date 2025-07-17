@@ -25,10 +25,13 @@ requestBody:
           email:
             type: string
             format: email
-          phone:
+          phoneNumber:
             type: string
           contactType:
             type: string
+          isFavourite:
+            type: boolean
+            example: false
           photo:
             type: string
             format: binary
@@ -41,7 +44,7 @@ responses:
           type: object
           properties:
             status:
-              type: string
+              type: integer
               example: success
             message:
               type: string

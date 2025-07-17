@@ -21,7 +21,7 @@ responses:
           type: object
           properties:
             status:
-              type: string
+              type: integer
               example: success
             message:
               type: string

@@ -21,7 +21,7 @@ responses:
           type: object
           properties:
             status:
-              type: string
+              type: integer
               example: success
             message:
               type: string
@@ -32,17 +32,8 @@ responses:
                 contact:
                   $ref: '../../../components/schemas/ContactInput.yaml'
   '404':
-    description: Контакт не знайдено
-    content:
-      application/json:
-        schema:
-          type: object
-          properties:
-            status:
-              type: string
-              example: error
-            message:
-              type: string
-              example: Контакт не знайдено
-            contact:
-              $ref: '../../../components/responses/NotFound.yaml'
+  description: Контакт не знайдено
+  content:
+    application/json:
+      schema:
+        $ref: '../../../components/responses/NotFound.yaml'
